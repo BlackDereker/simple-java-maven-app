@@ -14,20 +14,14 @@ pipeline {
     }
 
     stage('Test') {
-      post {
-        always {
-          junit 'target/surefire-reports/*.xml'
-        }
-
-      }
       steps {
         sh 'mvn test'
       }
     }
 
-    stage('') {
+    stage('Archive Tests') {
       steps {
-        junit 'target/surefire-reports/*.xml'
+        junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults: true)
       }
     }
 
