@@ -51,6 +51,34 @@ public class AppTest
         }
     }
 
+    @Test
+    public void testAppMult()
+    {
+        try {
+            for(int i = 0; i < 100; i++) {
+                float rnum = random.nextFloat() * 100f;
+                float rnum1 = random.nextFloat() * 100f;
+                assertEquals(App.mult(rnum, rnum1), rnum * rnum1, 0.0001f);
+            }
+        } catch (AssertionError e) {
+            fail("Failed on Mult test" + e);
+        }
+    }
+
+    @Test
+    public void testAppDiv()
+    {
+        try {
+            for(int i = 0; i < 100; i++) {
+                float rnum = random.nextFloat() * 100f + 1;
+                float rnum1 = random.nextFloat() * 100f + 1;
+                assertEquals(App.mult(rnum, rnum1), rnum / rnum1, 0.0001f);
+            }
+        } catch (AssertionError e) {
+            fail("Failed on Div test" + e);
+        }
+    }
+
     @After
     public void cleanUpStreams() {
         System.setOut(null);
