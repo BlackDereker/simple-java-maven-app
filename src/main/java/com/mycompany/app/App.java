@@ -18,17 +18,20 @@ public class App
             System.out.println("");
             System.out.println("0. Sair");
             System.out.println("1. Adicao");
+            System.out.println("2. Subtracao");
+            System.out.println("3. Multiplicacao");
+            System.out.println("4. Divisao");
             System.out.println("");
 
             int operation = -1;
             do {
-                System.out.print("Escolha (0-1): ");
+                System.out.print("Escolha (0-4): ");
                 try {
                     operation = sc.nextInt();
                 } catch (Exception e) {
                     sc.next();
                 } 
-            }while(operation < 0 || operation > 1);
+            }while(operation < 0 || operation > 4);
             
             if (operation == 0) {
                 break;
@@ -43,7 +46,16 @@ public class App
 
             switch(operation) {
                 case 1:
-                    result = num + num1;
+                    result = add(num, num1);
+                    break;
+                case 2:
+                    result = sub(num, num1);
+                    break;
+                case 3:
+                    result = mult(num, num1);
+                    break;
+                case 4:
+                    result = div(num, num1);
                     break;
             }
             
@@ -58,6 +70,18 @@ public class App
 
     public static float add(float a, float b) {
         return a + b;
+    }
+
+    public static float sub(float a, float b) {
+        return a - b;
+    }
+
+    public static float mult(float a, float b) {
+        return a * b;
+    }
+
+    public static float div(float a, float b) {
+        return a / b;
     }
 
     private static float requestFloat(Scanner sc, String prompt) {
