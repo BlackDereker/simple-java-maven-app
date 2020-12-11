@@ -5,6 +5,8 @@ import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,6 +16,7 @@ public class AppTest
 {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final Random random = new Random();
 
     @Before
     public void setUpStreams() {
@@ -21,22 +24,16 @@ public class AppTest
     }
 
     @Test
-    public void testAppConstructor() {
-        try {
-            new App();
-        } catch (Exception e) {
-            fail("Construction failed.");
-        }
-    }
-
-    @Test
-    public void testAppMain()
+    public void testAppAdd()
     {
-        App.main(null);
         try {
-            assertEquals("Hello World!" + System.getProperty("line.separator"), outContent.toString());
+            for(int i = 0; i < 100; i++) {
+                float rnum = random.nextFloat() * 100f;
+                float rnum1 = random.nextFloat() * 100f;
+                assertEquals(App.add(rnum, rnum1), rnum + rnum1, 0.0001f);
+            }
         } catch (AssertionError e) {
-            fail("\"message\" is not \"Hello World!\"");
+            fail("Failed on Add test" + e);
         }
     }
 
