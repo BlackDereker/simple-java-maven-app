@@ -10,14 +10,14 @@ public class App
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        final Scanner sc = new Scanner(System.in);
         
         while(true) {
 
             System.out.println("Calculadora - v1.1");
             System.out.println("");
             System.out.println("0. Sair");
-            System.out.println("1. Adição");
+            System.out.println("1. Adicao");
             System.out.println("");
 
             int operation = -1;
@@ -25,7 +25,9 @@ public class App
                 System.out.print("Escolha (0-1): ");
                 try {
                     operation = sc.nextInt();
-                } catch (Exception e) { continue; } 
+                } catch (Exception e) {
+                    sc.next();
+                } 
             }while(operation < 0 || operation > 1);
             
             if (operation == 0) {
@@ -45,7 +47,9 @@ public class App
                     break;
             }
             
-            System.out.println(String.format("Resultado: %.3f", result));
+            System.out.println("");
+            System.out.println(String.format("Resultado: %s", result));
+            System.out.println("");
 
         }
 
@@ -62,6 +66,7 @@ public class App
             try {
                 return sc.nextFloat();
             } catch (Exception e) {
+                sc.next();
                 continue;
             }
         }
