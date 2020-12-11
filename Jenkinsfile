@@ -28,7 +28,8 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'mv ./target /target/*.jar'
+        sh 'mv ./target/*.jar /target'
+        sh 'mv ./target/test-reports /target'
       }
     }
 
