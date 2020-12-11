@@ -2,7 +2,6 @@ pipeline {
   agent {
     docker {
       image 'maven:3-alpine'
-      args '-v /root/.m2:/root/.m2'
     }
 
   }
@@ -21,7 +20,7 @@ pipeline {
 
     stage('Archive Tests') {
       steps {
-        junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults: true, skipPublishingChecks: true)
+        junit(testResults: 'target/test-reports/*.xml', allowEmptyResults: true, skipPublishingChecks: true)
       }
     }
 
