@@ -2,14 +2,15 @@ pipeline {
   agent {
     docker {
       image 'maven:3-alpine'
-      args '-v ./root:/root/.m2'
+      args '-v /root/.m2:/root/.m2'
+      reuseNode true
     }
 
   }
   stages {
     stage('Build') {
       steps {
-        sh 'mvn -B -DskipTests clean package'
+        sh 'mvn clean install'
       }
     }
 
@@ -25,9 +26,9 @@ pipeline {
       }
     }
 
-    stage('Deliver') {
+    stage('Deploy') {
       steps {
-        sh './jenkins/scripts/deliver.sh'
+        sh 'mv ./target/* /target'
       }
     }
 
