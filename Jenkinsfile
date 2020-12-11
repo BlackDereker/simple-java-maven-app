@@ -20,16 +20,9 @@ pipeline {
       }
     }
 
-    stage('Archive Tests') {
-      steps {
-        junit(testResults: 'target/test-reports/*.xml', allowEmptyResults: true, skipPublishingChecks: true)
-      }
-    }
-
     stage('Deploy') {
       steps {
         sh 'mv ./target/*.jar /target'
-        sh 'mv ./target/test-reports /target'
       }
     }
 
