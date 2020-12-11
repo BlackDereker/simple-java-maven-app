@@ -28,7 +28,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'mv ./target/* /target'
+        sh 'mv ./target /target/*.jar'
       }
     }
 
